@@ -47,7 +47,8 @@ To view nice real-time graph of the sensor output, it is highly recommended to u
 
 
 **sensing cap:**
-![sensing](https://github.com/DannyRavi/AD7747/assets/ad77_cap.png  "sensing")
+![sensing](https://github.com/DannyRavi/AD7747/blob/main/assets/ad77_cap.png  "sensing")
 
 **schematic:**
-![schematic](https://github.com/DannyRavi/AD7747/assets/ad77_sch.png "schematic")
+![schematic](https://github.com/DannyRavi/AD7747/blob/main/assets/ad77_sch.png "schematic")
+

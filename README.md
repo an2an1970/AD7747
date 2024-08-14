@@ -1,5 +1,5 @@
 # AD7747 Arduino Library
-Library for Analog devices AD7747 family capacitative sensor.
+Library for Analog devices AD7747 Capacitive sensing.
 
 # Supported devices
 >* AD7747

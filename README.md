@@ -1,3 +1,5 @@
+[![Build workflow](https://img.shields.io/github/actions/workflow/status/DannyRavi/AD7747/c-cpp.yml?style=flat-square)](https://github.com//DannyRavi/AD7747/actions/workflows/c-cpp.yml?query=branch%3Amain)
+
 # AD7747 Arduino Library
 Library for Analog devices AD7747 Capacitive sensing.
 

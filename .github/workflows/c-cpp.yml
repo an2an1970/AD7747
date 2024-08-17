@@ -49,6 +49,19 @@ jobs:
 
       - name: Run PWD
         run: pwd
+        
+      - name: mkdir /home/test
+        run: mkdir /home/test
+        
+      - name: cp .ino to home
+        run: cp /home/runner/work/AD7747/AD7747/examples/AD7747.ino /home/test/AD7747.ino
+
+      - name: cp lib to /home
+        run: cp /home/runner/work/AD7747/AD7747/src/* /home/test
+
+      - name: ls files to /home/test
+        run: ls /home/test/
+        
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
       - name: Compile Sketch

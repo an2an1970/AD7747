@@ -5,7 +5,29 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  # This is the name of the job - can be whatever.
+  test-matrix:
+
+    # Here we tell GitHub that the jobs must be determined
+    # dynamically depending on a matrix configuration.
+    strategy:
+      matrix:
+        # The matrix will produce one job for each configuration
+        # parameter of type `arduino-platform`, in this case a
+        # total of 2.
+        arduino-platform: ["arduino:samd", "arduino:avr"]
+        # This is usually optional but we need to statically define the
+        # FQBN of the boards we want to test for each platform. In the
+        # future the CLI might automatically detect and download the core
+        # needed to compile against a certain FQBN, at that point the
+        # following `include` section will be useless.
+        include:
+          # This works like this: when the platform is "arduino:samd", the
+          # variable `fqbn` is set to "arduino:samd:nano_33_iot".
+          - arduino-platform: "arduino:samd"
+            fqbn: "arduino:samd:nano_33_iot"
+          - arduino-platform: "arduino:avr"
+            fqbn: "arduino:avr:unowifi"
     runs-on: ubuntu-latest
 
     steps:

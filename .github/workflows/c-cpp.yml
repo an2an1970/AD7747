@@ -1,0 +1,23 @@
+name: Arduino Build
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install Arduino CLI
+        run: npm install -g arduino-cli
+
+      - name: Build Arduino project
+        run: arduino-cli compile --board arduino:avr:uno --output ./build/output.hex

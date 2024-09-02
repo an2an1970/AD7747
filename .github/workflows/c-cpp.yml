@@ -54,7 +54,7 @@ jobs:
         run: mkdir /home/runner/work/AD7747/AD7747/test
         
       - name: cp .ino to home
-        run: cp /home/runner/work/AD7747/AD7747/AD7774-serial/AD7774-serial.ino /home/runner/work/AD7747/AD7747/test/test.ino
+        run: cp /home/runner/work/AD7747/AD7747/examples/AD7774-serial/AD7774-serial.ino /home/runner/work/AD7747/AD7747/test/test.ino
 
       - name: cp lib to /home
         run: cp /home/runner/work/AD7747/AD7747/src/* /home/runner/work/AD7747/AD7747/test

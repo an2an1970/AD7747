@@ -44,8 +44,8 @@
                                           //  {CAPFS2/CAFPFS1/CAPFS0=000 == DSP CONVERSATION TIME :22.0 }
                                           //  {MD2/MD1/MD0=001 === COUNTINUOUS MODE }
                                           //  {REMEMBER :: OFFSET U GAIN CALIBRATION }
-
-#define CAP_DAC_A_REG_VALUE B10000000 // 0X80  -> DACAENA=1 , DACA=000000
+// #define CAP_DAC_A_REG_VALUE B10000000 // 0X80  -> DACAENA=1 , DACA=000000
+#define CAP_DAC_A_REG_VALUE B00000000 // 0X80  -> DACAENA=1 , DACA=000000
 #define CAP_DAC_B_REG_VALUE B10000000 // 0X80  -> DACBENB=1 , DBCB=000000
 // TODO: RECHECK DATASHEET FOR CAP_OFFSET_H_REG_VALUE
 #define CAP_OFFSET_H_REG_VALUE B10000000 // 0X8000 DEFAULT VALUE
@@ -66,7 +66,7 @@
   {
 
   public:
-    AD7747::AD7747(uint8_t i2caddrRead, uint8_t i2caddrWrite)
+    AD7747(uint8_t i2caddrRead, uint8_t i2caddrWrite)
     {
 
       _i2caddrRead = i2caddrRead >> 1;
@@ -123,7 +123,4 @@
     void __debugger__(char *title, uint8_t arr_input[], uint8_t size_arr);
     void __debugger__(char *title, double arr_input[], uint8_t size_arr);
   };
-
-
-
 #endif

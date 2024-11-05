@@ -380,57 +380,63 @@ double AD7747::TempCentigrade(uint32_t rawTemp)
 
 bool AD7747::isDeviceConnected(void)
 {
-    while (true)
+    int nDevices = 0;
+    for (byte address = 1; address < 127; ++address)
     {
-        int nDevices = 0;
-        for (byte address = 1; address < 127; ++address)
-        {
-            // The i2c_scanner uses the return value of
-            // the Write.endTransmisstion to see if
-            // a device did acknowledge to the address.
-            Wire.beginTransmission(address);
-            byte error = Wire.endTransmission();
+        // The i2c_scanner uses the return value of
+        // the Write.endTransmisstion to see if
+        // a device did acknowledge to the address.
+        Wire.beginTransmission(address);
+        byte error = Wire.endTransmission();
 
-            if (error == 0)
+        if (error == 0)
+        {
+            Serial.print("I2C device found at address 0x");
+            Serial.print(address, HEX);
+            Serial.println("  !");
+            if (address < 16)
             {
-                Serial.print("I2C device found at address 0x");
-                Serial.print(address, HEX);
-                Serial.println("  !");
-                if (address < 16)
-                {
-                    Serial.print("0");
-                }
-
-                if (_i2caddrWrite == (uint8_t)address)
-                {
-                    Serial.println("+++ connected to AD7747 +++");
-                    return true;
-                }
-                else
-                {
-                    Serial.println(" this device is not AD7747 !");
-                }
-
-                ++nDevices;
+                Serial.print("0");
             }
-            else if (error == 4)
+
+            if (_i2caddrWrite == (uint8_t)address)
             {
-                Serial.print("Unknown error at address 0x");
-                if (address < 16)
-                {
-                    Serial.print("0");
-                }
-                Serial.println(address, HEX);
+                Serial.println("+++ connected to AD7747 +++");
+                return true;
             }
+            else
+            {
+                Serial.println(" this device is not AD7747 !");
+            }
+
+            ++nDevices;
         }
-        if (nDevices == 0)
+        else if (error == 4)
         {
-            Serial.println("No I2C devices found\n");
+            Serial.print("Unknown error at address 0x");
+            if (address < 16)
+            {
+                Serial.print("0");
+            }
+            Serial.println(address, HEX);
         }
-        else
-        {
-            Serial.println("reload\n");
-        }
+    }
+    if (nDevices == 0)
+    {
+        Serial.println("No I2C devices found\n");
+    }
+    else
+    {
+        Serial.println("reload\n");
+    }
+
+    return false;
+}
+
+void AD7747::waitUntilDeviceConnected(void)
+{
+    while (isDeviceConnected())
+    {
         delay(5000); // Wait 5 seconds for next scan
     }
 }

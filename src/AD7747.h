@@ -83,6 +83,7 @@
     uint32_t getCap(uint8_t addressStart);
     uint32_t getVT(uint8_t vt_start);
     bool isDeviceConnected(void);
+    void waitUntilDeviceConnected(void);
     double capPF(uint32_t rawCap);
     double TempCentigrade(uint32_t rawTemp);
     bool debug_mode = true;
